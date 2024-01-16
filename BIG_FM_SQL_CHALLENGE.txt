@@ -1,0 +1,314 @@
+CREATE TABLE Stations (
+    StationID NUMBER PRIMARY KEY,
+    StationName VARCHAR2(255),
+    Location VARCHAR2(255),
+    Frequency NUMBER(5,2),
+    LaunchDate DATE
+);
+
+CREATE TABLE Hosts (
+    HostID NUMBER PRIMARY KEY,
+    HostName VARCHAR2(255),
+    ShowCount NUMBER,
+    JoinDate DATE
+);
+
+CREATE TABLE Shows (
+    ShowID NUMBER PRIMARY KEY,
+    ShowName VARCHAR2(255),
+    HostID NUMBER,
+    StationID NUMBER,
+    LaunchDate DATE,
+    CONSTRAINT fk_Shows_HostID FOREIGN KEY (HostID) REFERENCES Hosts(HostID),
+    CONSTRAINT fk_Shows_StationID FOREIGN KEY (StationID) REFERENCES Stations(StationID)
+);
+
+CREATE TABLE Partnerships (
+    PartnershipID NUMBER PRIMARY KEY,
+    PartnerName VARCHAR2(255),
+    PartnershipType VARCHAR2(100),
+    StartDate DATE,
+    EndDate DATE
+);
+
+CREATE TABLE ShowPartnerships (
+    ShowID NUMBER,
+    PartnershipID NUMBER,
+    CONSTRAINT fk_ShowPartnerships_ShowID FOREIGN KEY (ShowID) REFERENCES Shows(ShowID),
+    CONSTRAINT fk_ShowPartnerships_PartnershipID FOREIGN KEY (PartnershipID) REFERENCES Partnerships(PartnershipID)
+);
+
+CREATE TABLE Awards (
+    AwardID NUMBER PRIMARY KEY,
+    AwardName VARCHAR2(255),
+    Year NUMBER,
+    ShowID NUMBER,
+    CONSTRAINT fk_Awards_ShowID FOREIGN KEY (ShowID) REFERENCES Shows(ShowID)
+);
+
+CREATE TABLE OnlinePresence (
+    PresenceID NUMBER PRIMARY KEY,
+    PlatformName VARCHAR2(255),
+    Link VARCHAR2(255),
+    LaunchDate DATE
+);
+
+-- Your INSERT statements remain the same, just ensure to use TO_DATE for dates.
+
+
+
+
+-- INSERT INTO Stations
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (1, 'Asansol', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (2, 'Bhubaneswar', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (3, 'Guwahati', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (4, 'Jamshedpur', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (5, 'Kolkata', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (6, 'Ranchi', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (7, 'Rourkela', 'East', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (8, 'Solapur', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (9, 'Nashik', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (10, 'Pune', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (11, 'Vadodara', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (12, 'Bhopal', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (13, 'Gwalior', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (14, 'Indore', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (15, 'Mumbai', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (16, 'Rajkot', 'West', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (17, 'Srinagar', 'North 1', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (18, 'Jammu', 'North 1', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (19, 'Shimla', 'North 1', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (20, 'Jhansi', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (21, 'Allahabad', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (22, 'Aligarh', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (23, 'Bareilly', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (24, 'Agra', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (25, 'Ajmer', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (26, 'Delhi', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (27, 'Patiala', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (28, 'Chandigarh', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (29, 'Hisar', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (30, 'Shillong', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (31, 'Agartala', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (32, 'Itanagar', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (33, 'Aizawl', 'North 2', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (34, 'Nagpur', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (35, 'Aurangabad', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (36, 'Ahmednagar', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (37, 'Kolhapur', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (38, 'Mangalore', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (39, 'Mysore', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (40, 'Hyderabad', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (41, 'Bangalore', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (42, 'Chennai', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (43, 'Trivandrum', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (44, 'Pondicherry', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (45, 'Lucknow', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (46, 'Gorakhpur', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (47, 'Varanasi', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (48, 'Patna', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (49, 'Muzaffarpur', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (50, 'Kanpur', 'South', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (51, 'Itanagar', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (52, 'Kota', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (53, 'Udaipur', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (54, 'Shimla', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (55, 'Delhi', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (56, 'Tirupati', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (57, 'Patna', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+INSERT INTO Stations (StationID, StationName, Location, Frequency, LaunchDate)
+VALUES (58, 'Varanasi', 'New', 92.7, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+-- INSERT INTO Hosts
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (1, 'Vrajesh Hirjee', 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (2, 'Annu Kapoor', 3, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (3, 'Neelesh Misra', 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (4, 'Bhawana Somaaya', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (5, 'Kamini Khanna', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (6, 'Richa Anirudh', 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (7, 'RJ Khaas Koushik', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (8, 'RJ Pat Pat Pataki Shruti', 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (9, 'RJ Rapid Rashmi', 3, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (10, 'RJ Rani', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (11, 'RJ Khurafati Nitin', 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (12, 'RJ Sangram', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Hosts (HostID, HostName, ShowCount, JoinDate)
+VALUES (13, 'RJ Abhilash', 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+-- INSERT INTO Shows
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (1, 'Suhaana Safar with Annu Kapoor', 2, 1, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (2, 'Yaadon Ka Idiot Box with Neelesh Misra', 3, 2, TO_DATE('2006-09-01', 'YYYY-MM-DD'));
+
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (3, 'Dhun Badal Ke Toh Dekho Season 1 (with Vidya Balan)', 4, 3, TO_DATE('2019-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (4, 'Dhun Badal Ke Toh Dekho Season 2 (with Sadhguru)', 5, 4, TO_DATE('2019-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (5, '21 Din Wellness In with Sunil Shetty', 1, 6, TO_DATE('2023-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO Shows (ShowID, ShowName, HostID, StationID, LaunchDate)
+VALUES (6, 'Green Ganesha', 6, 7, TO_DATE('2023-01-01', 'YYYY-MM-DD'));
+
+-- INSERT INTO Partnerships
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (1, 'Spotify', 'Music Streaming', TO_DATE('2006-09-01', 'YYYY-MM-DD'), NULL);
+
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (2, 'Gaana', 'Music Streaming', TO_DATE('2006-09-01', 'YYYY-MM-DD'), NULL);
+
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (3, 'JioSaavn', 'Music Streaming', TO_DATE('2006-09-01', 'YYYY-MM-DD'), NULL);
+
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (4, 'Hungama Music', 'Music Streaming', TO_DATE('2021-10-01', 'YYYY-MM-DD'), NULL);
+
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (5, 'Big Living Shop', 'E-commerce', TO_DATE('2023-01-01', 'YYYY-MM-DD'), NULL);
+
+INSERT INTO Partnerships (PartnershipID, PartnerName, PartnershipType, StartDate, EndDate)
+VALUES (6, 'Blue Mic', 'Independent Artists Platform', TO_DATE('2021-10-01', 'YYYY-MM-DD'), NULL);
+
+-- INSERT INTO ShowPartnerships
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (1, 1);  -- ShowID 1 associated with PartnershipID 1
+
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (2, 2); -- ShowID 2 associated with PartnershipID 2
+
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (3, 3); -- ShowID 3 associated with PartnershipID 3
+
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (4, 4); -- ShowID 4 associated with PartnershipID 4
+
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (5, 5); -- ShowID 5 associated with PartnershipID 5
+
+INSERT INTO ShowPartnerships (ShowID, PartnershipID)
+VALUES (6, 6); -- ShowID 6 associated with PartnershipID 6
+
+-- INSERT INTO Awards
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (1, 'IRF Gold', 2019, 1);
+
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (2, 'IRF Gold', 2018, 2);
+
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (3, 'ABBY', 2017, 3);
+
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (4, 'NYF Radio Award', 2014, 4);
+
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (5, 'Indian Radio Forum Gold', 2019, 5);
+
+INSERT INTO Awards (AwardID, AwardName, Year, ShowID)
+VALUES (6, 'Indian Radio Forum Gold', 2018, 6);
+
+-- INSERT INTO OnlinePresence
+INSERT INTO OnlinePresence (PresenceID, PlatformName, Link, LaunchDate)
+VALUES (1, 'Spotify', 'https://open.spotify.com/bigfm', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO OnlinePresence (PresenceID, PlatformName, Link, LaunchDate)
+VALUES (2, 'Gaana', 'https://gaana.com/bigfm', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO OnlinePresence (PresenceID, PlatformName, Link, LaunchDate)
+VALUES (3, 'JioSaavn', 'https://www.jiosaavn.com/bigfm', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+
+INSERT INTO OnlinePresence (PresenceID, PlatformName, Link, LaunchDate)
+VALUES (4, 'Hungama Music', 'https://www.hungama.com/bigfm', TO_DATE('2021-10-01', 'YYYY-MM-DD'));
+
+INSERT INTO OnlinePresence (PresenceID, PlatformName, Link, LaunchDate)
+VALUES (5, 'BIG Living Shop', 'https://bigliving.shop', TO_DATE('2023-01-01', 'YYYY-MM-DD'));
+
+https://drawsql.app/teams/ankan-bandyopadhyay/diagrams/big-fm-sql-challenge
+
+https://livesql.oracle.com/apex/livesql/s/6emfo8oz5v00sfezetw44rgd
+
